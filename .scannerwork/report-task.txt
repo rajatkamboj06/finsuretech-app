@@ -2,5 +2,5 @@ projectKey=FonSureTech
 serverUrl=http://127.0.0.1:9000
 serverVersion=25.6.0.109173
 dashboardUrl=http://127.0.0.1:9000/dashboard?id=FonSureTech
-ceTaskId=f8866f17-03ee-4cd3-ab8c-e766040f433c
-ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=f8866f17-03ee-4cd3-ab8c-e766040f433c
+ceTaskId=cbd82544-27d1-42ef-ae89-0208434a12f2
+ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=cbd82544-27d1-42ef-ae89-0208434a12f2
