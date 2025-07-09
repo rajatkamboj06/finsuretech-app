@@ -1,0 +1,11 @@
+groups:
+- name: finsuretech-alerts
+  rules:
+  - alert: HighMemoryUsage
+    expr: process_resident_memory_bytes > 50000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High Memory Usage on FinSureTech App"
+      description: "Memory usage is over 50MB for more than 30s."
