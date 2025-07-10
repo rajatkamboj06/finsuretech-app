@@ -1,0 +1,17 @@
+{
+  "name": "finsuretech-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-spawn": "^7.0.5",
+    "express": "^5.1.0",
+    "prom-client": "^15.1.3"
+  }
+}

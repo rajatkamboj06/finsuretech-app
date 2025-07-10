@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# FinSureTech Health Check Script
+# Application: ${app_name}
+# Port: ${port}
+
+echo "Running health check for ${app_name}..."
+
+# Check if application is running
+if curl -f http://localhost:${port}/health > /dev/null 2>&1; then
+    echo "✅ Application is healthy"
+    exit 0
+else
+    echo "❌ Application health check failed"
+    exit 1
+fi 

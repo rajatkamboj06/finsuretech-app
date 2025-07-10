@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# FinSureTech Development Setup Script
+# Application: finsuretech
+# Base Path: ./local-infrastructure
+
+echo "Setting up development environment for finsuretech..."
+
+# Navigate to the base path
+cd ./local-infrastructure
+
+# Install dependencies
+echo "Installing dependencies..."
+npm install
+
+# Set up environment
+echo "Setting up environment..."
+cp .env.example .env 2>/dev/null || echo "No .env.example found"
+
+# Start development services
+echo "Starting development services..."
+docker-compose up -d
+
+# Wait for services to be ready
+echo "Waiting for services to be ready..."
+sleep 15
+
+# Run health checks
+echo "Running health checks..."
+./health-check.sh
+
+echo "✅ Development environment setup completed!"
+echo "Application: http://localhost:3001"
+echo "Nginx: http://localhost:80"
+echo "Prometheus: http://localhost:9090"
+echo "Grafana: http://localhost:3000" 

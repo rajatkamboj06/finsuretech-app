@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# FinSureTech Backup Script
+# Application: ${app_name}
+# Backup Path: ${backup_path}
+
+echo "Starting backup for ${app_name}..."
+
+# Create backup directory if it doesn't exist
+mkdir -p ${backup_path}
+
+# Create backup of application data
+BACKUP_FILE="${backup_path}/${app_name}_backup_$(date +"%Y%m%d_%H%M%S").tar.gz"
+echo "Creating backup: $BACKUP_FILE"
+tar -czf "$BACKUP_FILE" \
+    --exclude='node_modules' \
+    --exclude='.git' \
+    --exclude='*.log' \
+    .
+
+echo "✅ Backup completed: $BACKUP_FILE"
+
+# Clean up old backups (keep last 7 days)
+find ${backup_path} -name "${app_name}_backup_*.tar.gz" -mtime +7 -delete
+
+echo "✅ Old backups cleaned up" 

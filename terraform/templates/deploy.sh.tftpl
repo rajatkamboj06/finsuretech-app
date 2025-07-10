@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# FinSureTech Local Deployment Script
+# Application: ${app_name}
+# Port: ${port}
+
+echo "Starting deployment for ${app_name}..."
+
+# Build the Docker image
+echo "Building Docker image..."
+docker build -t ${app_name}:latest .
+
+# Stop existing containers
+echo "Stopping existing containers..."
+docker-compose down
+
+# Start the application stack
+echo "Starting application stack..."
+docker-compose up -d
+
+# Wait for application to be ready
+echo "Waiting for application to be ready..."
+sleep 10
+
+# Health check
+echo "Running health check..."
+curl -f http://localhost:${port}/health || echo "Health check failed"
+
+echo "Deployment completed!"
+echo "Application available at: http://localhost:${port}"
+echo "Nginx proxy available at: http://localhost:80" 
