@@ -147,15 +147,16 @@ resource "local_file" "maintenance_script" {
 }
 
 # Generate self-signed SSL certificate for local HTTPS
-resource "null_resource" "generate_ssl_cert" {
-  provisioner "local-exec" {
-    command = <<-EOT
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-        -keyout ${local.base_path}/certs/localhost.key \
-        -out ${local.base_path}/certs/localhost.crt \
-        -subj "/C=US/ST=Local/L=Local/O=${local.app_name}/CN=localhost"
-    EOT
-  }
-  
-  depends_on = [null_resource.create_directories]
-} 
+# Commented out for demo - requires OpenSSL installation
+# resource "null_resource" "generate_ssl_cert" {
+#   provisioner "local-exec" {
+#     command = <<-EOT
+#       openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+#         -keyout ${local.base_path}/certs/localhost.key \
+#         -out ${local.base_path}/certs/localhost.crt \
+#         -subj "/C=US/ST=Local/L=Local/O=${local.app_name}/CN=localhost"
+#     EOT
+#   }
+#   
+#   depends_on = [null_resource.create_directories]
+# } 
