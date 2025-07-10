@@ -14,7 +14,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    bat '''
+                    sh '''
                         sonar-scanner $SONAR_SCANNER_OPTS
                     '''
                 }
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Snyk SCA + Monitor') {
             steps {
-                bat '''
+                sh '''
                     export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin
                     echo "Authenticating Snyk..."
                     snyk auth $SNYK_TOKEN
@@ -39,7 +39,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat '''
+                sh '''
                     echo "Building Docker image..."
                     docker build -t finsuretech-app .
                 '''
@@ -48,7 +48,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                bat '''
+                sh '''
                     echo "Scanning Docker image with Trivy..."
                     trivy image --exit-code 0 --severity CRITICAL,HIGH finsuretech-app
                 '''
@@ -57,7 +57,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                bat '''
+                sh '''
                     echo "Deploying to EC2..."
 
                     ssh -o StrictHostKeyChecking=no -i "$EC2_KEY" ec2-user@$EC2_IP << 'EOF'
@@ -83,7 +83,7 @@ pipeline {
 
         stage('Run ZAP Scan') {
             steps {
-                bat '''
+                sh '''
                     echo "Running ZAP scan on EC2..."
 
                     ssh -o StrictHostKeyChecking=no -i "$EC2_KEY" ec2-user@$EC2_IP "
@@ -97,7 +97,7 @@ pipeline {
 
         stage('Copy ZAP Report') {
             steps {
-                bat '''
+                sh '''
                     echo "Copying ZAP report from EC2 to Jenkins..."
 
                     scp -o StrictHostKeyChecking=no -i "$EC2_KEY" ec2-user@$EC2_IP:/home/ec2-user/finsuretech-app/zap-report.html .
