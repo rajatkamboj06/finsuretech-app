@@ -52,6 +52,7 @@ To create a **fully automated, secure CI/CD pipeline** for a Node.js financial a
    - Deploy to **Production EC2** after passing all tests.
 3. **Monitoring** via Prometheus and Grafana.
 4. **Smart Alerts & AI-based Anomaly Detection** trigger alerts or Jenkins jobs.
+<img width="2878" height="1548" alt="Jenkins" src="https://github.com/user-attachments/assets/1e9f5086-c080-4854-9d28-fbcdc32c95c6" />
    
 
 
