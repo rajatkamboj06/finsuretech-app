@@ -52,6 +52,8 @@ To create a **fully automated, secure CI/CD pipeline** for a Node.js financial a
    - Deploy to **Production EC2** after passing all tests.
 3. **Monitoring** via Prometheus and Grafana.
 4. **Smart Alerts & AI-based Anomaly Detection** trigger alerts or Jenkins jobs.
+   
+
 
 ---
 
@@ -64,8 +66,11 @@ A lightweight financial dashboard simulation using **HTML, CSS, and JavaScript**
 ## 🔐 Security Integrations
 
 - **SonarQube (SAST):** Identifies code bugs and vulnerabilities statically.
+  
 - **Snyk (SCA):** Scans `package.json` for vulnerable NPM dependencies.
+
 - **Trivy:** Scans Docker images for known CVEs and misconfigurations.
+  
 - **OWASP ZAP (DAST):** Scans live app for runtime security issues.
 
 ---
